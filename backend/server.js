@@ -1,5 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const pool = require('./config/db');
+const tourRoutes = require('./routes/tourRoutes');
 
 dotenv.config();
 
@@ -8,11 +10,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+// Routes
+app.use('/tours', tourRoutes);
+
 app.get('/', (req, res) => {
-  res.json({ message: 'Task Manager API is running! 🚀' });
-});
-app.get('/hello', (req, res) => {
-  res.json({ message: 'Hello Anthony!' });
+  res.json({ message: 'Tour Management API is running! 🚀' });
 });
 
 app.listen(PORT, () => {
