@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const pool = require('./config/db');
 const tourRoutes = require('./routes/tourRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use('/tours', tourRoutes);
+app.use('/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Tour Management API is running! 🚀' });

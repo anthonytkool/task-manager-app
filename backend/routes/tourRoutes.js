@@ -5,9 +5,13 @@ const {
   getTourById,
   createTour,
 } = require('../controllers/tourController');
+const { protect, adminOnly } = require('../middleware/authMiddleware');
 
+// Public routes — ไม่ต้อง Login
 router.get('/', getAllTours);
 router.get('/:id', getTourById);
-router.post('/', createTour);
+
+// Protected routes — ต้อง Login + เป็น Admin
+router.post('/', protect, adminOnly, createTour);
 
 module.exports = router;
